@@ -1,0 +1,81 @@
+---
+title: "CHASE Test"
+output: github_document
+---
+## Testing the CHASE hazardous substances assessment tool
+
+This is a test of the CHASE tool, using two input datasets: one for level 3 assessment units and one for level 4 assessment units. Both datasets are based on the same indicator results but are aggregated at different spatial scales. A description of the preparation of these test data sets can be seen in [test_dataset.md](test_dataset.md).
+
+The results of the test are stored in the [output](output/) folder.
+
+The code contained in this markdown document is also available as a standalone R script in [src/CHASE_test.R](src/CHASE_test.R).
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      fig.path = "markdown_images/")
+```
+
+Load required functions
+```{r load functions, message=FALSE}
+require(tidyverse)
+source('src/CHASE.R')
+source('src/CHASE_functions.R')
+```
+
+Load indicator data for level 3 and level 4 assessments.
+```{r load data, message=FALSE}
+# load data for level 3 indicators
+file3 <- "./input/assessmentdata_L3.csv"
+df3 <- read.table(file3,sep=";",header=T)
+
+# load data for level 4 indicators
+file4 <- "./input/assessmentdata_L4.csv"
+df4 <- read.table(file4,sep=";",header=T)
+
+# show the head of df3
+head(df3)
+```
+
+Do the assessments
+```{r assessments, message=FALSE}
+# Get assessment results for each assessment level
+CHASE3<-CHASEassessment(df3) 
+CHASE4<-CHASEassessment(df4)
+```
+
+The fourth item in each result list gives the overall results for each assessment unit.
+
+```{r confidence results, message=FALSE}
+resL3<-CHASE3[[4]]
+resL4<-CHASE4[[4]]
+
+# show the head of resL3
+head(resL3)
+```
+
+Plot the variations in confidence for the overall assessment
+
+```{r plot confidence results, message=FALSE}
+
+p3<-ggplot(resL3) +
+  geom_histogram(aes(x=ConfScore),binwidth=0.02) +
+  ggtitle("Level 3") +
+  theme_minimal()
+plot(p3)
+
+p4<-ggplot(resL4) +
+  geom_histogram(aes(x=ConfScore),binwidth=0.02) +
+  ggtitle("Level ") +
+  theme_minimal()
+plot(p4)
+```
+
+Save the results and the plots
+
+```{r save results, message=FALSE}
+ggsave(p3,file="output/histogram_confidence_L3.png",dpi=300,units="cm",height=15,width=15)
+ggsave(p4,file="output/histogram_confidence_L4.png",dpi=300,units="cm",height=15,width=15)
+
+save(CHASE3,file="output/test_results_L3.Rda")
+save(CHASE4,file="output/test_results_L4.Rda")
+
+```

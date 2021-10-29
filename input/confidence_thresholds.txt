@@ -1,0 +1,25 @@
+Substance;Matrix;ConfThresh;Comment
+ANT;Sediment;H;
+CD;Sediment;H;
+HBCD;Sediment;H;
+PB;Sediment;M;
+SBD6;Sediment;H;
+TBTIN;Sediment;H;
+PB;Biota;M;
+HG;Biota;H;
+HBCD;Biota;H;
+FLU;Biota;H;
+BAP;Biota;H;
+CD;Biota;M;
+CS-137;Biota;M;Called radioactive s in original
+PFOS;Biota;H;
+SBD6;Biota;H;
+SCB6;Biota;L;
+SDX;Biota;H;
+CD;Water;H;
+CS-137;Water;M;Called radioactive s in original
+PB;Water;H;
+TBTIN;Water;H;
+VDS;Bio. Effects;M;matrix changed to bio. effects CJM
+PYR1OH;Bio. Effects;M;added by CJM
+PFOS;Water;H;added by CJM
