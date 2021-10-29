@@ -61,7 +61,7 @@ aggregated for a single assessment.
 required columns.  
 <sup>3</sup>Confidence components are not required in order to give a
 status assessment. If any single confidence component is not provided,
-it will be assumed to be equal to 0.
+it will be assumed to be *Low*.
 
 #### Results
 

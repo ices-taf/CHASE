@@ -43,7 +43,7 @@ A required argument for the function is a dataframe containing the assessment in
 
 <sup>1</sup>If no assessment units are provided, the indicators will be aggregated for a single assessment.  
 <sup>2</sup>If *CR* is not provided, then *Threshold* and *Status* are required columns.   
-<sup>3</sup>Confidence components are not required in order to give a status assessment. If any single confidence component is not provided, it will be assumed to be equal to 0.   
+<sup>3</sup>Confidence components are not required in order to give a status assessment. If any single confidence component is not provided, it will be assumed to be *Low*.   
 
 #### Results
 
